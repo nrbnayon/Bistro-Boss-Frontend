@@ -1,8 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
-
 import "./styles.css";
 import { Pagination, Autoplay } from "swiper/modules";
 
@@ -10,16 +8,24 @@ import Slider1 from "../../assets/home/slide1.jpg";
 import Slider2 from "../../assets/home/slide2.jpg";
 import Slider3 from "../../assets/home/slide3.jpg";
 import Slider4 from "../../assets/home/slide4.jpg";
+import BgCard from "../Shared/BgCard";
+import TestImg from "../../assets/home/chef-service.jpg";
+import SectionTitle from "../Shared/SectionTitle";
 
 const CategorySlider = () => {
+  const Card = {
+    img: TestImg,
+    title: "BISTRO BOSS",
+    desc: "Bistro Boss offers a unique dining experience with a variety of delicious dishes prepared with the freshest ingredients. Join us for a meal that delights your taste buds and provides a cozy ambiance.",
+  };
+  const header = {
+    title: " ---From 11:00am to 10:00pm---",
+    desc: "ORDER ONLINE",
+  };
+
   return (
     <div className="my-4">
-      <div className="text-center my-4 bg-slate-100 p-5 rounded-lg shadow-md">
-        <p className="text-lg text-[#D99904] font-semibold">
-          ---From 11:00am to 10:00pm---
-        </p>
-        <h3 className="text-3xl mt-3 text-[#151515] font-bold">ORDER ONLINE</h3>
-      </div>
+      <SectionTitle header={header} />
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
@@ -32,6 +38,24 @@ const CategorySlider = () => {
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay]}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
         className="mySwiper"
       >
         <SwiperSlide className="relative">
@@ -75,6 +99,9 @@ const CategorySlider = () => {
           </h3>
         </SwiperSlide>
       </Swiper>
+      <div className="mt-8">
+        <BgCard Card={Card} />
+      </div>
     </div>
   );
 };
