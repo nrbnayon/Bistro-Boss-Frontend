@@ -11,7 +11,8 @@ const PopularMenuCard = ({ menu }) => {
       />
       <div>
         <div className="flex flex-grow justify-between">
-          <h3 className="text-lg font-semibold mb-2">{name}</h3>
+          <h3 className="text-lg font-bold text-secondary mb-2">{name}</h3>
+          <span>------</span>
           <p className="text-xl text-yellow-400 font-bold">${price}</p>
         </div>
         <p className="text-sm text-gray-600">{recipe}</p>
