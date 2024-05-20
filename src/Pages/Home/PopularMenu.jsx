@@ -1,32 +1,33 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../Shared/SectionTitle";
-import axios from "axios";
-import MenuCard from "./MenuCard";
+import PopularMenuCard from "./PopularMenuCard";
 import { Link } from "react-router-dom";
+import useMenu from "../../hooks/useMenu";
 
-const OurMenu = () => {
-  const [menus, setMenus] = useState([]);
+const PopularMenu = () => {
+  // const [menus, setMenus] = useState([]);
   const header = {
     title: " --Check it out---",
     desc: "FROM OUR MENU",
   };
-  useEffect(() => {
-    axios.get("./menu.json").then((res) => {
-      const items = res.data;
 
-      const popularItems = items.filter((item) => item.category === "popular");
+  const [menus] = useMenu();
+  const popular = menus.filter((item) => item.category === "popular");
+  // useEffect(() => {
+  //   axios.get("./menu.json").then((res) => {
+  //     const items = res.data;
 
-      setMenus(popularItems);
-    });
-  }, []);
-  console.log(menus);
+  //     const popularItems = items.filter((item) => item.category === "popular");
+
+  //     setMenus(popularItems);
+  //   });
+  // }, []);
   return (
     <div className="my-6">
       <SectionTitle header={header} />
       <div className="flex flex-col md:flex-row">
-        <div className="grid md:grid-cols-2 gap-8 my-4 mx-4">
-          {menus.map((menu) => (
-            <MenuCard key={menu._id} menu={menu} />
+        <div className="grid m-4 md:w-[85%] mx-auto md:grid-cols-2 gap-5 my-4 ">
+          {popular.map((menu) => (
+            <PopularMenuCard key={menu._id} menu={menu} />
           ))}
         </div>
       </div>
@@ -62,4 +63,4 @@ const OurMenu = () => {
   );
 };
 
-export default OurMenu;
+export default PopularMenu;

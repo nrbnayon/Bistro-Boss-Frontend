@@ -4,19 +4,44 @@ const NavBar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink>HOME</NavLink>
+        <NavLink
+          to="/"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          HOME
+        </NavLink>
       </li>
       <li>
-        <NavLink>CONTACT US</NavLink>
+        <NavLink
+          to="/contact"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          CONTACT US
+        </NavLink>
       </li>
       <li>
-        <NavLink>DASHBOARD</NavLink>
+        <NavLink
+          to="/dashboard"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          DASHBOARD
+        </NavLink>
       </li>
       <li>
-        <NavLink>OUR MENU</NavLink>
+        <NavLink
+          to="/menu"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          OUR MENU
+        </NavLink>
       </li>
       <li>
-        <NavLink>OUR SHOP</NavLink>
+        <NavLink
+          to="/shop"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          OUR SHOP
+        </NavLink>
       </li>
     </>
   );
@@ -90,9 +115,7 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        <NavLink to="/login" className="btn">
-          LOGIN
-        </NavLink>
+        <NavLink className="btn">LOGIN</NavLink>
       </div>
     </div>
   );
