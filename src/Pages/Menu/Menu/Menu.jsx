@@ -25,8 +25,8 @@ const Menu = () => {
         header={{ desc: "TODAY'S OFFER", title: "---Don't Miss---" }}
       />
       <MenuCategory items={offers} />
-      <MenuCategory items={desserts} title={"Dessert"} coverImg={dessertImg} />
-      <MenuCategory items={pizzas} title={"PIZZA"} coverImg={pizzaImg} />
+      <MenuCategory items={desserts} title={"dessert"} coverImg={dessertImg} />
+      <MenuCategory items={pizzas} title={"pizza"} coverImg={pizzaImg} />
       <MenuCategory items={soups} title={"soup"} coverImg={soupImg} />
       <MenuCategory items={salads} title={"salad"} coverImg={saladImg} />
     </div>

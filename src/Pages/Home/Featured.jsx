@@ -29,6 +29,7 @@ const Featured = () => {
               <h3 className="text-2xl font-bold mb-2">
                 March 25, 2024 WHERE CAN I GET SOME?
               </h3>
+              <p>Where Can I Get Some?</p>
               <p className="mb-4">
                 Indulge in our chef&apos;s special, crafted with the finest
                 ingredients to tantalize your taste buds. Experience the perfect
@@ -37,7 +38,7 @@ const Featured = () => {
               </p>
 
               <button className=" border-b-4 bg-opacity-75 border-b-primary font-cinzel font-bold  py-2 px-6 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
-                READ MORE
+                ORDER NOW
               </button>
             </div>
           </div>

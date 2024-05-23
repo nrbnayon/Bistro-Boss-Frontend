@@ -43,6 +43,14 @@ const NavBar = () => {
           OUR SHOP
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/order/salad"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          ORDER FOOD
+        </NavLink>
+      </li>
     </>
   );
   return (
