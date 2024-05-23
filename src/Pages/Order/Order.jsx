@@ -8,6 +8,7 @@ import OrderTabs from "./OrderTabs";
 import { useParams } from "react-router-dom";
 import SkeletonLoader from "./../LoaderSpiner/SkeletonLoader";
 import { Helmet } from "react-helmet-async";
+// import { Pagination, Stack } from "@mui/material";
 
 const Order = () => {
   const categories = ["salad", "soup", "pizza", "drinks", "dessert"];

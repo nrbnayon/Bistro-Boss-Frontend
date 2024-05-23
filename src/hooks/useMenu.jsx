@@ -7,7 +7,7 @@ const useMenu = () => {
 
   useEffect(() => {
     axios
-      .get("/menu.json")
+      .get("http://localhost:8000/menu")
       .then((res) => {
         if (Array.isArray(res.data)) {
           setMenus(res.data);
