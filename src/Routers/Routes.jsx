@@ -39,11 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: (
-          <ProtectedRoute>
-            <Menu />
-          </ProtectedRoute>
-        ),
+        element: <Menu />,
       },
       {
         path: "/order/:category",
@@ -53,11 +49,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "cart",
-        element: <Cart />,
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
