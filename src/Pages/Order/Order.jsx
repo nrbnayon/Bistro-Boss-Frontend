@@ -6,8 +6,8 @@ import { useState } from "react";
 import useMenu from "../../hooks/useMenu";
 import OrderTabs from "./OrderTabs";
 import { useParams } from "react-router-dom";
-import SkeletonLoader from "./../LoaderSpiner/SkeletonLoader";
 import { Helmet } from "react-helmet-async";
+import Spinner from "../Shared/Spinner/Spinner";
 // import { Pagination, Stack } from "@mui/material";
 
 const Order = () => {
@@ -18,7 +18,7 @@ const Order = () => {
   const [tabIndex, setTabIndex] = useState(initialIndex);
 
   if (loading) {
-    return <SkeletonLoader />;
+    return <Spinner />;
   }
 
   if (!Array.isArray(menus)) {

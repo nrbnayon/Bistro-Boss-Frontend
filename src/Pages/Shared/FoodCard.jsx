@@ -1,20 +1,74 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
 import { TbListDetails } from "react-icons/tb";
 import { FaCartArrowDown } from "react-icons/fa";
+import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ food }) => {
+  const axiosSecure = useAxios();
+  const { user } = useAuth();
+  const { refetch } = useCart();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-    });
+    AOS.init({ duration: 1000 });
   }, []);
 
   const { _id, name, image, category, price, recipe } = food;
 
+  const handleAddToCart = async () => {
+    if (user && user?.email) {
+      const cartItem = {
+        menuId: _id,
+        email: user?.email,
+        name,
+        image,
+        price,
+        category,
+        recipe,
+      };
+      try {
+        await axiosSecure.post("/carts", cartItem);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${name} Added to your cart successfully!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+        // toast.success("Added to cart successfully!");
+      } catch (error) {
+        toast.error("Failed to add to cart. Please try again.");
+        console.error(error);
+      }
+    } else {
+      Swal.fire({
+        title: "Your are not logged In",
+        text: "Please Login to add to the cart?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", {
+            state: { from: location },
+            replace: true,
+          });
+        }
+      });
+    }
+  };
   return (
     <div
       className="mx-auto w-full font-cinzel capitalize my-6 md:max-w-[380px] space-y-2 rounded-xl bg-gray-200 p-4  shadow-lg "
@@ -135,11 +189,12 @@ const FoodCard = ({ food }) => {
         </Link>
 
         <button
-          className="flex items-center justify-center h-14 w-14 bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg rounded-full transform transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-l hover:from-indigo-500 hover:to-purple-500 focus:outline-none"
+          onClick={handleAddToCart}
+          className="flex items-center justify-center h-14 w-14 bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg rounded-full "
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <FaCartArrowDown className="w-6 h-6" />
+          <FaCartArrowDown className="w-6 h-6 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:text-green-400" />
         </button>
       </div>
     </div>
