@@ -22,14 +22,7 @@ const NavBar = () => {
           HOME
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/contact"
-          className="hover:text-primary hover:underline transition duration-300"
-        >
-          CONTACT US
-        </NavLink>
-      </li>
+
       <li>
         <NavLink
           to="/dashboard"
@@ -46,14 +39,14 @@ const NavBar = () => {
           OUR MENU
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink
           to="/shop"
           className="hover:text-primary hover:underline transition duration-300"
         >
           OUR SHOP
         </NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink
           to="/order/salad"
@@ -62,8 +55,20 @@ const NavBar = () => {
           ORDER FOOD
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className="hover:text-primary hover:underline transition duration-300"
+        >
+          CONTACT US
+        </NavLink>
+      </li>
     </>
   );
+
+  const cartItem = cart.length;
+
+  const totalCartPrice = cart.reduce((total, item) => total + item.price, 0);
   if (isLoading) return <LoaderSpinner />;
   if (error) return <div>Error loading cart: {error.message}</div>;
 
@@ -122,7 +127,7 @@ const NavBar = () => {
                 />
               </svg>
               <span className="badge badge-sm indicator-item text-secondary">
-                {cart.length}
+                {cartItem}
               </span>
             </div>
           </div>
@@ -131,10 +136,15 @@ const NavBar = () => {
             className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">{cart.length} Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="font-bold text-lg">{cartItem} Items</span>
+              <span className="text-info">Subtotal: ${totalCartPrice}</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <Link
+                  to="/dashboard/cart"
+                  className="btn btn-primary btn-block"
+                >
+                  View cart
+                </Link>
               </div>
             </div>
           </div>

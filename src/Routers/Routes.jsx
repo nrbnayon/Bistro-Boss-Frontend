@@ -8,6 +8,8 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import ProtectedRoute from "./ProtectedRoute";
 import GuestRoute from "./GuestRoute";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +48,16 @@ export const router = createBrowserRouter([
       {
         path: "/order/:category",
         element: <Order />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },
