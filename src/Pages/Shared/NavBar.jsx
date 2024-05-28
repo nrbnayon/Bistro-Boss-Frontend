@@ -1,11 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
-import LoaderSpinner from "./../LoaderSpiner/LoaderSpiner";
+// import LoaderSpinner from "./../LoaderSpiner/LoaderSpiner";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
-  const { cart, isLoading, error } = useCart();
+  const { cart } = useCart();
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -69,8 +69,8 @@ const NavBar = () => {
   const cartItem = cart.length;
 
   const totalCartPrice = cart.reduce((total, item) => total + item.price, 0);
-  if (isLoading) return <LoaderSpinner />;
-  if (error) return <div>Error loading cart: {error.message}</div>;
+  // if (isLoading) return <LoaderSpinner />;
+  // if (error) return <div>Error loading cart: {error.message}</div>;
 
   return (
     <div className="navbar bg-base-100 fixed h-20 z-[999] max-w-screen-xl mx-auto opacity-90">

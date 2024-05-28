@@ -10,6 +10,7 @@ import {
 } from "react-simple-captcha";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -17,7 +18,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const { signInUser, loginWithGoogle, loginWithGithub } = useAuth();
-
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -68,7 +69,16 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     loginWithGoogle()
-      .then(() => {
+      .then((result) => {
+        console.log(result.user);
+        const userInfo = {
+          name: result.user?.displayName,
+          profileImg: result.user?.photoURL,
+          email: result.user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
         navigate(from, { replace: true });
         toast.success("Google Login Successfully");
       })
@@ -79,7 +89,15 @@ const Login = () => {
 
   const handleGithubSignIn = () => {
     loginWithGithub()
-      .then(() => {
+      .then((result) => {
+        const userInfo = {
+          name: result.user?.displayName,
+          profileImg: result.user?.photoURL,
+          email: result.user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
         navigate(from, { replace: true });
         toast.success("GitHub Login successfully");
       })

@@ -3,7 +3,9 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -42,9 +44,17 @@ const Register = () => {
         displayName: username,
         photoURL: photourl,
       });
-
-      toast.success("Registration successful!");
-      navigate("/");
+      const userInfo = {
+        name: username,
+        profileImg: photourl,
+        email: email,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Registration successful!");
+          navigate("/");
+        }
+      });
     } catch (error) {
       setError(error.message);
     }

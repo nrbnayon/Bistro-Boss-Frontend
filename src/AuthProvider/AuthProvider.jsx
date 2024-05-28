@@ -32,6 +32,11 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
+  const loginWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
+
   const updateProfile = async (user, profileData) => {
     try {
       setProfileUpdating(true);
@@ -85,10 +90,6 @@ const AuthProvider = ({ children }) => {
   //     };
   //   }, [axiosSecure]);
 
-  const loginWithGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
   const logOut = () => {
     setLoading(true);
     return signOut(auth);

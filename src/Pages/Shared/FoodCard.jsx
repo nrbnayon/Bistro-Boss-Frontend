@@ -25,6 +25,7 @@ const FoodCard = ({ food }) => {
   const { _id, name, image, category, price, recipe } = food;
 
   const handleAddToCart = async () => {
+    console.log("email", user?.email);
     if (user && user?.email) {
       const cartItem = {
         menuId: _id,
@@ -45,7 +46,6 @@ const FoodCard = ({ food }) => {
           timer: 1500,
         });
         refetch();
-        // toast.success("Added to cart successfully!");
       } catch (error) {
         toast.error("Failed to add to cart. Please try again.");
         console.error(error);
