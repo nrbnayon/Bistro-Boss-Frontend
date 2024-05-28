@@ -7,7 +7,7 @@ import {
   FaUsers,
   FaBook,
 } from "react-icons/fa6";
-import {  FaHome, FaShopify } from "react-icons/fa";
+import { FaHome, FaShopify } from "react-icons/fa";
 import { FcCalendar } from "react-icons/fc";
 import { GiWallet } from "react-icons/gi";
 import { MdRateReview, MdContentPasteSearch } from "react-icons/md";
@@ -18,8 +18,8 @@ const Dashboard = () => {
   const { cart } = useCart();
   const isAdmin = true;
   return (
-    <div className="flex flex-col md:flex-row">
-      <div className="w-full md:w-64 md:min-h-screen bg-orange-400 font-cinzel font-semibold text-white">
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="w-full md:w-64 bg-orange-400 font-cinzel font-semibold text-white sticky top-0">
         <ul className="menu space-y-3 p-4">
           {isAdmin ? (
             <>
@@ -155,7 +155,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 overflow-y-auto">
         <Outlet />
       </div>
     </div>

@@ -70,15 +70,12 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     loginWithGoogle()
       .then((result) => {
-        console.log(result.user);
         const userInfo = {
           name: result.user?.displayName,
           profileImg: result.user?.photoURL,
           email: result.user?.email,
         };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
-        });
+        axiosPublic.post("/users", userInfo);
         navigate(from, { replace: true });
         toast.success("Google Login Successfully");
       })
@@ -95,9 +92,7 @@ const Login = () => {
           profileImg: result.user?.photoURL,
           email: result.user?.email,
         };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
-        });
+        axiosPublic.post("/users", userInfo);
         navigate(from, { replace: true });
         toast.success("GitHub Login successfully");
       })

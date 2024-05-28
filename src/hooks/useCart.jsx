@@ -5,17 +5,23 @@ import useAuth from "./useAuth";
 const useCart = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
+
   const {
     data: cart = [],
     isLoading,
     refetch,
     error,
   } = useQuery({
-    queryKey: ["cart", user?.email],
+    queryKey: ["cart", user?.displayName, user?.photoURL],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/carts?email=${user.email}`);
+      const res = await axiosSecure.get(
+        `/carts?userName=${encodeURIComponent(
+          user.displayName
+        )}&userProfileImg=${encodeURIComponent(user.photoURL)}`
+      );
       return res.data;
     },
+    enabled: !!user?.displayName && !!user?.photoURL,
   });
 
   return { cart, isLoading, refetch, error };

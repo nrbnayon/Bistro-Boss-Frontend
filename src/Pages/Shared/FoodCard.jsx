@@ -25,16 +25,17 @@ const FoodCard = ({ food }) => {
   const { _id, name, image, category, price, recipe } = food;
 
   const handleAddToCart = async () => {
-    console.log("email", user?.email);
-    if (user && user?.email) {
+    if (user && (user?.email || user?.photoURL || user?.displayName)) {
       const cartItem = {
         menuId: _id,
-        email: user?.email,
         name,
         image,
         price,
         category,
         recipe,
+        userEmail: user?.email,
+        userProfileImg: user?.photoURL,
+        userName: user?.displayName,
       };
       try {
         await axiosSecure.post("/carts", cartItem);
