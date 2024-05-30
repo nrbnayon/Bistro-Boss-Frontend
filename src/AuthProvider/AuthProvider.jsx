@@ -11,6 +11,7 @@ import {
   updateProfile as updateUserProfile,
 } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
+import useAxiosPublic from "./../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -21,6 +22,7 @@ const AuthProvider = ({ children }) => {
   const [profileUpdating, setProfileUpdating] = useState(false);
   const githubProvider = new GithubAuthProvider();
   //   const axiosSecure = useAxios();
+  const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -53,42 +55,27 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const loggedUser = {
+        email: currentUser?.email,
+        username: currentUser?.displayName,
+        photoURL: currentUser?.photoURL,
+      };
       setUser(currentUser);
+      if (currentUser) {
+        axiosPublic.post("/jwt", loggedUser).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
     return () => {
       unSubscribe();
     };
-  }, []);
-
-  //   useEffect(() => {
-  //     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //       const loggedUser = {
-  //         email: currentUser?.email,
-  //         username: currentUser?.displayName,
-  //         photoURL: currentUser?.photoURL,
-  //       };
-  //       setUser(currentUser);
-  //       setLoading(false);
-
-  //       if (currentUser) {
-  //         axiosSecure
-  //           .post("/jwt", loggedUser, { withCredentials: true })
-  //           .then(() => {
-  //             // console.log("Token:", res.data);
-  //           });
-  //       } else {
-  //         axiosSecure
-  //           .post("/logout", loggedUser, { withCredentials: true })
-  //           .then(() => {
-  //             // console.log("Token:", res.data);
-  //           });
-  //       }
-  //     });
-  //     return () => {
-  //       unSubscribe();
-  //     };
-  //   }, [axiosSecure]);
+  }, [axiosPublic]);
 
   const logOut = () => {
     setLoading(true);
@@ -114,3 +101,32 @@ AuthProvider.propTypes = {
   children: PropTypes.node,
 };
 export default AuthProvider;
+
+//   useEffect(() => {
+//     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+//       const loggedUser = {
+//         email: currentUser?.email,
+//         username: currentUser?.displayName,
+//         photoURL: currentUser?.photoURL,
+//       };
+//       setUser(currentUser);
+//       setLoading(false);
+
+//       if (currentUser) {
+//         axiosSecure
+//           .post("/jwt", loggedUser, { withCredentials: true })
+//           .then(() => {
+//             // console.log("Token:", res.data);
+//           });
+//       } else {
+//         axiosSecure
+//           .post("/logout", loggedUser, { withCredentials: true })
+//           .then(() => {
+//             // console.log("Token:", res.data);
+//           });
+//       }
+//     });
+//     return () => {
+//       unSubscribe();
+//     };
+//   }, [axiosSecure]);

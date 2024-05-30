@@ -98,6 +98,66 @@ const CategorySlider = () => {
             DESSERTS
           </h3>
         </SwiperSlide>
+        <SwiperSlide className="relative">
+          <img
+            src={Slider2}
+            className="w-full h-auto rounded-lg shadow-md"
+            alt="Slide 2"
+          />
+          <h3 className="text-3xl bottom-4 bg-gradient-to-r from-black to-transparent bg-opacity-75 w-full font-bold absolute text-center text-white py-2">
+            PIZZAS
+          </h3>
+        </SwiperSlide>
+        <SwiperSlide className="relative">
+          <img
+            src={Slider3}
+            className="w-full h-auto rounded-lg shadow-md"
+            alt="Slide 3"
+          />
+          <h3 className="text-3xl bottom-4 bg-gradient-to-r from-black to-transparent bg-opacity-75 w-full font-bold absolute text-center text-white py-2">
+            SOUPS
+          </h3>
+        </SwiperSlide>
+        <SwiperSlide className="relative">
+          <img
+            src={Slider4}
+            className="w-full h-auto rounded-lg shadow-md"
+            alt="Slide 4"
+          />
+          <h3 className="text-3xl bottom-4 bg-gradient-to-r from-black to-transparent bg-opacity-75 w-full font-bold absolute text-center text-white py-2">
+            DESSERTS
+          </h3>
+        </SwiperSlide>
+        <SwiperSlide className="relative">
+          <img
+            src={Slider2}
+            className="w-full h-auto rounded-lg shadow-md"
+            alt="Slide 2"
+          />
+          <h3 className="text-3xl bottom-4 bg-gradient-to-r from-black to-transparent bg-opacity-75 w-full font-bold absolute text-center text-white py-2">
+            PIZZAS
+          </h3>
+        </SwiperSlide>
+        <SwiperSlide className="relative">
+          <img
+            src={Slider3}
+            className="w-full h-auto rounded-lg shadow-md"
+            alt="Slide 3"
+          />
+          <h3 className="text-3xl bottom-4 bg-gradient-to-r from-black to-transparent bg-opacity-75 w-full font-bold absolute text-center text-white py-2">
+            SOUPS
+          </h3>
+        </SwiperSlide>
+        <SwiperSlide className="relative">
+          <img
+            src={Slider4}
+            className="w-full h-auto rounded-lg shadow-md"
+            alt="Slide 4"
+          />
+          <h3 className="text-3xl bottom-4 bg-gradient-to-r from-black to-transparent bg-opacity-75 w-full font-bold absolute text-center text-white py-2">
+            DESSERTS
+          </h3>
+        </SwiperSlide>
       </Swiper>
       <div className="mt-8">
         <BgCard Card={Card} />

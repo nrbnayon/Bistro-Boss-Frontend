@@ -13,13 +13,14 @@ import { GiWallet } from "react-icons/gi";
 import { MdRateReview, MdContentPasteSearch } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const { cart } = useCart();
-  const isAdmin = true;
+  const { isAdmin } = useAdmin();
   return (
     <div className="flex flex-col md:flex-row h-screen">
-      <div className="w-full md:w-64 bg-orange-400 font-cinzel font-semibold text-white sticky top-0">
+      <div className="w-full md:w-64 bg-orange-400 font-cinzel font-semibold text-white md:sticky md:top-0">
         <ul className="menu space-y-3 p-4">
           {isAdmin ? (
             <>
@@ -155,7 +156,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1 p-8 overflow-y-auto">
+      <div className="flex-1 md:p-4 lg:p-8 md:overflow-y-auto">
         <Outlet />
       </div>
     </div>
