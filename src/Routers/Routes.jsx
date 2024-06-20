@@ -11,6 +11,10 @@ import GuestRoute from "./GuestRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AddItem from "../Pages/Dashboard/AddItem/AddItem";
+import AdminRoute from "./AdminRoute";
+import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
+import UpdateItem from "../Pages/Dashboard/ManageItems/UpdateItem";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +60,7 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      // normal user Route
       {
         path: "cart",
         element: (
@@ -66,13 +71,37 @@ export const router = createBrowserRouter([
       },
 
       //admin Routes
+      {
+        path: "addItems",
+        element: (
+          <AdminRoute>
+            <AddItem />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageItems",
+        element: (
+          <AdminRoute>
+            <ManageItems />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "update-item/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItem />
+          </AdminRoute>
+        ),
+      },
 
       {
         path: "users",
         element: (
-          <ProtectedRoute>
+          <AdminRoute>
             <AllUsers />
-          </ProtectedRoute>
+          </AdminRoute>
         ),
       },
     ],

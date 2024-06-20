@@ -14,6 +14,7 @@ import { MdRateReview, MdContentPasteSearch } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
+import { ToastContainer } from "react-toastify";
 
 const Dashboard = () => {
   const { cart } = useCart();
@@ -159,6 +160,7 @@ const Dashboard = () => {
       <div className="flex-1 md:p-4 lg:p-8 md:overflow-y-auto">
         <Outlet />
       </div>
+      <ToastContainer />
     </div>
   );
 };

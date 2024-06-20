@@ -74,6 +74,7 @@ const Login = () => {
           name: result.user?.displayName,
           profileImg: result.user?.photoURL,
           email: result.user?.email,
+          role: "user",
         };
         axiosPublic.post("/users", userInfo);
         navigate(from, { replace: true });
