@@ -95,7 +95,7 @@ Bistro-Boss is a full-stack MERN (MongoDB, Express.js, React, Node.js) applicati
   - Redux (for state management)
   - React Router (for navigation)
   - Axios (for HTTP requests)
-  - Bootstrap (for styling)
+  - Tailwind (for styling)
 
 - **Backend:**
   - Node.js
